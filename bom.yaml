@@ -1,0 +1,23 @@
+includes:
+  - base.yaml
+targets:
+  - target: /bin
+    copy:
+      - from: ../target/release
+        files: [chdb]
+  - target: /usr/share/zoneinfo
+    copy:
+      - from:  /usr/share/zoneinfo
+        dir:
+          - UTC
+  - target: /opt/occlum/glibc/lib
+    copy:
+      - from: /opt/occlum/glibc/lib
+        files:
+          - libnss_dns.so.2
+          - libnss_files.so.2
+          - libresolv.so.2
+  - target: /
+    mkdirs:
+      - dev
+      - etc
